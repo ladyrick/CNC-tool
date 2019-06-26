@@ -1,4 +1,9 @@
 "use strict";
+
+if (window.screen.height > window.screen.width) {
+    document.body.style.maxWidth = "95%";
+}
+
 var nav = new Vue({
     el: "#navigator",
     data: {
