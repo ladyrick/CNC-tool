@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+
+    <link rel="shortcut icon" href="favicon.png" />
+
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- 生产环境版本，优化了尺寸和速度 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <script src="https://cdn.bootcdn.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="main.css" />
+</head>
+
+<body>
+    <div class="page-header">
+        <h1>需要一个标题</h1>
+        <h1><small>作者：ladyrick</small></h1>
+    </div>
+
+    <nav id="navigator">
+        <ul class="nav nav-tabs fakelink">
+            <li role="presentation" v-bind:class="{active: tab === '螺纹切削'}" v-on:click="active(0)"><a>螺纹切削</a></li>
+            <li role="presentation" v-bind:class="{active: tab === '数控车削'}" v-on:click="active(1)"><a>数控车削</a></li>
+        </ul>
+    </nav>
+
+    <div id="container">
+
+        <!-- 螺纹切削 -->
+        <div id="tab1" v-if="active">
+            <h2><small>常用螺纹切削进给次数与切削深度（公制螺纹）</small></h2>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-5 col-xs-offset-4">
+                        <span><strong>螺距(mm)：</strong></span>
+                        <div class="btn-group">
+                            <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ luoju }}<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li v-for="lj in luoju_list" v-on:click="set_luoju(lj)"><a>{{lj}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-xs-5 col-xs-offset-4">
+                        牙深(半径值)：{{yashen}}
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-xs-5 col-xs-offset-4">切削次数及背吃刀量(直径值)：</div>
+                </div>
+                <div class="row" v-for="cd in chidao">
+                    <div class="col-xs-5 col-xs-offset-4">第{{cd.index}}次：{{cd.value}}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 数控车削 -->
+        <div id="tab2" v-if="active">
+            <h2><small>数控车削切削用量参考数据</small></h2>
+            <div class="row">
+                <div class="col-xs-5 col-xs-offset-2">
+                    <span><strong>工件材料：</strong></span>
+                    <div class="btn-group">
+                        <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ material }}<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li v-for="m in material_list" v-on:click="set_material(m)"><a>{{m}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-5">
+                    <span><strong>加工方式：</strong></span>
+                    <div class="btn-group">
+                        <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ method }}<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li v-for="m in method_list" v-on:click="set_method(m)"><a>{{m}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-xs-5 col-xs-offset-2">背吃刀量(mm)：{{dataline[2]}}</div>
+                <div class="col-xs-5">切削速度(m/min)：{{dataline[3]}}</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-5 col-xs-offset-2">进给量(mm/r)：{{dataline[4]}}</div>
+                <div class="col-xs-5">刀具材料：{{dataline[5]}}</div>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>

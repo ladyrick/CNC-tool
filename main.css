@@ -1,0 +1,30 @@
+body {
+    max-width: 640px;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+.fakelink a {
+    cursor: pointer;
+}
+
+#container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container {
+    width: 100%;
+}
+
+.btn .caret {
+    margin-left: 10px;
+}
+
+.dropdown-menu li {
+    cursor: pointer;
+}
+
+.row {
+    margin-bottom: 10px;
+}
