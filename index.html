@@ -2,9 +2,9 @@
 <html>
 
 <head>
-    <title>需要一个标题</title>
+    <title>数控车切削参数</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 
     <link rel="shortcut icon" href="favicon.png" />
 
@@ -21,19 +21,19 @@
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="main.css" />
 </head>
 
 <body>
     <div class="page-header">
-        <h1>需要一个标题</h1>
-        <h1><small>作者：ladyrick</small></h1>
+        <h1>数控车切削参数</h1>
     </div>
 
     <nav id="navigator">
         <ul class="nav nav-tabs fakelink">
-            <li role="presentation" v-bind:class="{active: tab === '螺纹切削'}" v-on:click="active(0)"><a>螺纹切削</a></li>
-            <li role="presentation" v-bind:class="{active: tab === '数控车削'}" v-on:click="active(1)"><a>数控车削</a></li>
+            <li role="presentation" v-bind:class="{active: tab === '螺纹切削'}" v-on:click="tab = '螺纹切削'"><a>螺纹切削</a></li>
+            <li role="presentation" v-bind:class="{active: tab === '数控车削'}" v-on:click="tab = '数控车削'"><a>数控车削</a></li>
         </ul>
     </nav>
 
@@ -68,6 +68,40 @@
                 </div>
                 <div class="row" v-for="cd in chidao">
                     <div class="col-md-5 col-md-offset-4">第{{cd.index}}次：{{cd.value}}</div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="input-group">
+                            <span class="input-group-addon input-group-addon-remove-style"><strong>螺纹公称直径：</strong></span>
+                            <input type="number" step="0.01" class="form-control" v-model="d" placeholder="" aria-describedby="basic-addon1">
+                            <span class="input-group-addon" id="basic-addon1">mm</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-2 col-xs-6">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="button" v-bind:class="['btn', 'btn-default', {active: luowen === '车外螺纹'}]" v-on:click="luowen = '车外螺纹'">车外螺纹</button>
+                            <button type="button" v-bind:class="['btn', 'btn-default', {active: luowen === '车内螺纹'}]" v-on:click="luowen = '车内螺纹'">车内螺纹</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xs-6">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="button" v-bind:class="['btn', 'btn-default', {active: jinshu === '塑性金属'}]" v-on:click="jinshu = '塑性金属'">塑性金属</button>
+                            <button type="button" v-bind:class="['btn', 'btn-default', {active: jinshu === '脆性金属'}]" v-on:click="jinshu = '脆性金属'">脆性金属</button>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-5 col-md-offset-4">螺纹底径(mm)：{{lwdij}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5 col-md-offset-4">螺纹顶径(mm)：{{lwdingj}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5 col-md-offset-4">车螺纹前的孔径(mm)：{{clwqdkj}}</div>
                 </div>
             </div>
         </div>
@@ -107,6 +141,20 @@
             <div class="row">
                 <div class="col-md-5 col-md-offset-2">进给量(mm/r)：{{dataline[4]}}</div>
                 <div class="col-md-5">刀具材料：{{dataline[5]}}</div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-10 col-md-offset-2">
+                    <div class="input-group">
+                        <span class="input-group-addon input-group-addon-remove-style"><strong>零件待加工表面直径：</strong></span>
+                        <input type="number" step="0.01" class="form-control" v-model="d" placeholder="" aria-describedby="basic-addon2">
+                        <span class="input-group-addon" id="basic-addon2">mm</span>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">主轴转速(r/min)：{{zzzs}}</div>
             </div>
         </div>
     </div>

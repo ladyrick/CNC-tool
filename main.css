@@ -28,3 +28,10 @@ body {
 .row>div {
     margin-bottom: 10px;
 }
+
+.input-group-addon-remove-style {
+    font-size: inherit;
+    border: none;
+    background: transparent;
+    padding-left: 0;
+}
