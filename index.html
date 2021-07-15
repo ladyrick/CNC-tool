@@ -34,6 +34,7 @@
         <ul class="nav nav-tabs fakelink">
             <li role="presentation" v-bind:class="{active: tab === '螺纹切削'}" v-on:click="tab = '螺纹切削'"><a>螺纹切削</a></li>
             <li role="presentation" v-bind:class="{active: tab === '数控车削'}" v-on:click="tab = '数控车削'"><a>数控车削</a></li>
+            <li role="presentation" v-bind:class="{active: tab === '数控铣削'}" v-on:click="tab = '数控铣削'"><a>数控铣削</a></li>
         </ul>
     </nav>
 
@@ -80,13 +81,13 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4 col-md-offset-2 col-xs-6">
+                    <div class="col-md-4 col-md-offset-2 col-xs-12">
                         <div class="btn-group" role="group" aria-label="...">
                             <button type="button" v-bind:class="['btn', 'btn-default', {active: luowen === '车外螺纹'}]" v-on:click="luowen = '车外螺纹'">车外螺纹</button>
                             <button type="button" v-bind:class="['btn', 'btn-default', {active: luowen === '车内螺纹'}]" v-on:click="luowen = '车内螺纹'">车内螺纹</button>
                         </div>
                     </div>
-                    <div class="col-md-4 col-xs-6">
+                    <div class="col-md-4 col-xs-12">
                         <div class="btn-group" role="group" aria-label="...">
                             <button type="button" v-bind:class="['btn', 'btn-default', {active: jinshu === '塑性金属'}]" v-on:click="jinshu = '塑性金属'">塑性金属</button>
                             <button type="button" v-bind:class="['btn', 'btn-default', {active: jinshu === '脆性金属'}]" v-on:click="jinshu = '脆性金属'">脆性金属</button>
@@ -155,6 +156,72 @@
             <br />
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">主轴转速(r/min)：{{zzzs}}</div>
+            </div>
+        </div>
+
+        <!-- 数控铣削 -->
+        <div id="tab3" v-if="active">
+            <h2><small>数控铣削切削用量参考数据</small></h2>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-2 col-xs-offset-1 col-xs-5">
+                    <span><strong>铣削：</strong></span>
+                    <div class="btn-group">
+                        <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ material }}<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li v-for="m in material_list" v-on:click="set_material(m)"><a>{{m}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-5">
+                    <span><strong>钻削：</strong></span>
+                    <div class="btn-group">
+                        <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ method }}<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li v-for="m in method_list" v-on:click="set_method(m)"><a>{{m}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-2 col-xs-offset-1 col-xs-5">
+                    <span><strong>扩孔钻：</strong></span>
+                    <div class="btn-group">
+                        <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ material }}<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li v-for="m in material_list" v-on:click="set_material(m)"><a>{{m}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-5">
+                    <span><strong>铰孔：</strong></span>
+                    <div class="btn-group">
+                        <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ method }}<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li v-for="m in method_list" v-on:click="set_method(m)"><a>{{m}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-2 col-xs-offset-1 col-xs-5">
+                    <span><strong>镗孔：</strong></span>
+                    <div class="btn-group">
+                        <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ material }}<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li v-for="m in material_list" v-on:click="set_material(m)"><a>{{m}}</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
