@@ -165,7 +165,6 @@ var tab2 = new Vue({
         },
         zzzs: function () {
             var d = new Number(this.d);
-            console.log(d);
             if (d == 0) {
                 return '——';
             }
@@ -265,7 +264,6 @@ var tab3 = new Vue({
         },
         zzzs: function () {
             var d = new Number(this.d);
-            console.log(d);
             if (d == 0) {
                 return '——';
             }
